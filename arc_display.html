@@ -1,0 +1,59 @@
+<style>
+    a {color:black;
+        text-decoration: none;
+        }
+    li {
+        margin-bottom: 5px; /* Space between items */
+        padding-bottom: 15px; /* Space inside item */
+        border-bottom: 1px solid #ccc; /* Line separation */
+        border-bottom-color: darkgray;
+        margin-left: 15px;
+        font-family: helvetica;
+        padding-left: 20px;
+        font-size:15px;
+    }
+
+    ol > li {
+        counter-increment: customlistcounter;
+    }
+
+    ol > li::marker {
+        font-weight: bold;
+        font-size: 18px;
+        font-family: Georgia;
+        content: counter(customlistcounter) "";
+    }
+
+
+</style>
+
+<h3 style="font-family:helvetica;font-size:20px;padding-bottom:5px">Trending This Week</h3>
+
+<ol id="myList"></ol>
+
+
+
+<script>
+
+function trending(data) {
+    console.log(data);
+
+    const listId = document.getElementById("myList");
+
+    for (let i = 0; i < 5; i++) {
+        console.log(i);
+        const page = data[i];
+
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+
+        link.href = 'https://' + page['url']
+        link.textContent = page['title']
+
+        listItem.appendChild(link);
+        listId.appendChild(listItem)
+    }
+}
+</script>
+
+<script src="https://annenberg-trending-data.s3.us-east-1.amazonaws.com/data.js"></script>
