@@ -3,7 +3,8 @@ This project finds uscannenbergmedia.com's trending articles based on viewership
 
 ## Structure ##
 main.py finds the top articles <br/>
-tempate.yaml creates the following AWS resources: lambda function, s3 bucket, and event rule <br/>
+template.yaml creates the following AWS resources: lambda function, s3 bucket, and event rule <br/>
+arc_display.html contains code for the Arc html box
 
 ## Requirements ##
 AWS CLI <br/>
