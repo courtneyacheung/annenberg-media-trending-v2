@@ -1,6 +1,6 @@
 ## Description ##
 This project finds uscannenbergmedia.com's trending articles based on viewership. <br/>
-Data is from the past 7 days, with viewership of recent articles weighted higher than older articles.
+Data is from the past 7 days, with viewership of recent articles weighted higher than older articles. <br/>
 Viewership data is updated every two hours.
 
 ## Structure ##
