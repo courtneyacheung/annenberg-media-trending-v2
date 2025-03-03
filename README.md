@@ -1,5 +1,7 @@
 ## Description ##
-This project finds uscannenbergmedia.com's trending articles based on viewership data. <br/>
+This project finds uscannenbergmedia.com's trending articles based on viewership. <br/>
+Data is from the past 7 days, with viewership of recent articles weighted higher than older articles.
+Viewership data is updated every two hours.
 
 ## Structure ##
 main.py finds the top articles <br/>
@@ -9,7 +11,7 @@ arc_display.html contains code for the Arc html box
 ## Requirements ##
 AWS CLI <br/>
 AWS SAM CLI <br/>
-Google Analytics credentials (ask for file)<br/>
+Google Analytics API credentials file (not included in public repo)<br/>
 
 ## Run ##
 Option 1: deploy template.yaml on PyCharm <br/>
