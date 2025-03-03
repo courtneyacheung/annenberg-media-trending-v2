@@ -52,7 +52,7 @@ Resources:
     Properties:
       EventBusName: default
       Name: test-eb-rule-for-every-3-min
-      ScheduleExpression: cron(0/3 * * * ? *)
+      ScheduleExpression: cron(0 0/2 * * ? *)
       State: ENABLED
       Targets:
         -
