@@ -84,6 +84,9 @@ def lambda_handler(event, context):
     with open('/tmp/data.js', 'w') as f:
         f.write('trending(' + json.dumps(outputs) + ');')
 
+
+    # ! do not uncomment the lines below !
+
     # Create an S3 client
     # s3 = boto3.client('s3', region_name='us-east-1')
 
