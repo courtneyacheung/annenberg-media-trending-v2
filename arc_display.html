@@ -34,6 +34,9 @@
 
 
 <script>
+    function encode_utf8( s ){
+    return  encodeURIComponent( s );
+}
 
 function trending(data) {
     console.log(data);
@@ -48,7 +51,8 @@ function trending(data) {
         const link = document.createElement("a");
 
         link.href = 'https://' + page['url']
-        link.textContent = page['title']
+        // link.textContent = page['headline']
+        link.innerHTML = page['headline'] + "<img src=\"https://" + page['image_url'] + "&amp;height=91&amp;width=137\">"
 
         listItem.appendChild(link);
         listId.appendChild(listItem)
