@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  proof of concept
+  trending articles
 
 Globals:
   Function:
@@ -12,7 +12,7 @@ Resources:
   TrendingBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: annenberg-trending-data
+      BucketName: amc-trending-data-prod
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
         BlockPublicPolicy: false
@@ -37,7 +37,7 @@ Resources:
   TrendingFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: annenberg-trending-function
+      FunctionName: amc-trending-function-prod
       CodeUri: source/
       Handler: main.lambda_handler
       Runtime: python3.9
@@ -51,7 +51,7 @@ Resources:
     Type: AWS::Events::Rule
     Properties:
       EventBusName: default
-      Name: test-eb-rule-for-every-3-min
+      Name: amc-trending-every-2-hr-prod
       ScheduleExpression: cron(0 0/2 * * ? *)
       State: ENABLED
       Targets:

@@ -84,16 +84,13 @@ def lambda_handler(event, context):
     with open('/tmp/data.js', 'w') as f:
         f.write('trending(' + json.dumps(outputs) + ');')
 
-
-    # ! do not uncomment the lines below !
-
     # Create an S3 client
-    # s3 = boto3.client('s3', region_name='us-east-1')
+    s3 = boto3.client('s3', region_name='us-east-1')
 
     # Upload a file
-    # cache_control_header = 'no-store, no-cache, must-revalidate'
-    # s3.upload_file('/tmp/data.js', 'annenberg-trending-data', 'data.js',
-    #                ExtraArgs={'CacheControl': cache_control_header})
+    cache_control_header = 'no-store, no-cache, must-revalidate'
+    s3.upload_file('/tmp/data.js', 'amc-trending-data-prod', 'data.js',
+                   ExtraArgs={'CacheControl': cache_control_header})
 
     return
 
