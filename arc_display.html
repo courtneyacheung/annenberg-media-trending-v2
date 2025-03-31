@@ -83,14 +83,14 @@
 <div class="trending-container">
     <h3 class="trending-title">Trending This Week</h3>
     
-    <ol class="trending-list" id="myList"></ol>
+    <ol class="trending-list" id="trendingList"></ol>
 </div>
 
 <script>
     function trending(data) {
         console.log(data);
         
-        const listId = document.getElementById("myList");
+        const listId = document.getElementById("trendingList");
         
         for (let i = 0; i < 5; i++) {
             console.log(i);
