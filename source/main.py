@@ -68,7 +68,7 @@ def lambda_handler(event, context):
 
     outputs = []
     host = 'www.uscannenbergmedia.com'
-    print(json.dumps(response.json(), indent=2))
+    # print(json.dumps(response.json(), indent=2))
 
     for article in response.json()['content_elements']:
         output_dict = {'url': 'www.uscannenbergmedia.com' + article['canonical_url'],
@@ -78,7 +78,7 @@ def lambda_handler(event, context):
                        'date': article['display_date'],
                        'credits': [author['additional_properties']['original']['byline'] for author in article['credits']['by']]}
         outputs.append(output_dict)
-    # print(json.dumps(outputs, indent=2))
+    print(json.dumps(outputs, indent=2))
 
     # writing the output to data.js
     with open('/tmp/data.js', 'w') as f:

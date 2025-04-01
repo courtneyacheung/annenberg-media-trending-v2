@@ -1,63 +1,134 @@
 <style>
-    a {color:black;
+    a {
+        color: black;
         text-decoration: none;
-        }
-    li {
-        margin-bottom: 5px; /* Space between items */
-        padding-bottom: 15px; /* Space inside item */
-        border-bottom: 1px solid #ccc; /* Line separation */
-        border-bottom-color: darkgray;
-        margin-left: 15px;
-        font-family: helvetica;
-        padding-left: 20px;
-        font-size:15px;
+        display: block;
+        width: 100%;
     }
 
-    ol > li {
+    .trending-container {
+        font-family: Helvetica, Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px; /* Added padding on the sides */
+        box-sizing: border-box;
+    }
+
+    .trending-title {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 20px;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+    .trending-list {
+        list-style-position: outside;
+        padding-left: 30px;
+        counter-reset: customlistcounter;
+        position: relative;
+    }
+
+    .trending-item {
+        margin-bottom: 18px;
+        padding-bottom: 18px;
+        font-size: 15px;
+        display: flex;
+        position: relative;
+    }
+
+    /* Removed border-bottom from trending-item and created a separate element for divider */
+    .trending-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -26px;
+        right: 0;
+        height: 0.1px;
+        background-color: rgb(148, 148, 148);
+    }
+
+    .trending-list > .trending-item::before {
+        content: counter(customlistcounter);
         counter-increment: customlistcounter;
-    }
-
-    ol > li::marker {
         font-weight: bold;
         font-size: 18px;
-        font-family: Georgia;
-        content: counter(customlistcounter) "";
+        font-family: Georgia, serif;
+        position: absolute;
+        left: -25px;
     }
 
+    .trending-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: flex-start;
+    }
 
+    .trending-headline {
+        flex: 1;
+        padding-right: 15px;
+        max-width: 60%;
+        font-size: medium;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .trending-image {
+        width: 137px;
+        height: 91px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
 </style>
 
-<h3 style="font-family:helvetica;font-size:20px;padding-bottom:5px">Trending This Week</h3>
+<div class="trending-container">
+    <h3 class="trending-title">Trending This Week</h3>
 
-<ol id="myList"></ol>
-
-
+    <ol class="trending-list" id="trendingList"></ol>
+</div>
 
 <script>
-    function encode_utf8( s ){
-    return  encodeURIComponent( s );
-}
+    function trending(data) {
+        console.log(data);
 
-function trending(data) {
-    console.log(data);
+        const listId = document.getElementById("trendingList");
 
-    const listId = document.getElementById("myList");
+        for (let i = 0; i < 5; i++) {
+            console.log(i);
+            const page = data[i];
 
-    for (let i = 0; i < 5; i++) {
-        console.log(i);
-        const page = data[i];
+            const listItem = document.createElement("li");
+            listItem.className = "trending-item";
 
-        const listItem = document.createElement("li");
-        const link = document.createElement("a");
+            const link = document.createElement("a");
+            link.href = 'https://' + page['url'];
 
-        link.href = 'https://' + page['url']
-        // link.textContent = page['headline']
-        link.innerHTML = page['headline'] + "<img src=\"https://" + page['image_url'] + "&amp;height=91&amp;width=137\">"
+            const contentDiv = document.createElement("div");
+            contentDiv.className = "trending-content";
 
-        listItem.appendChild(link);
-        listId.appendChild(listItem)
+            const headlineDiv = document.createElement("div");
+            headlineDiv.className = "trending-headline";
+            headlineDiv.textContent = page['headline'];
+
+            const img = document.createElement("img");
+            imgSrc = "https://" + page['image_url'] //+ "&height=91&width=137";
+            // if (imgSrc.includes('?auth')) {
+            //     imgSrc += '&height=91&width=137';
+            // } else {
+            //     imgSrc += '?height=91&width=137';
+            // }
+            img.src = imgSrc;
+            img.width = 137;
+            img.height = 91;
+            img.className = "trending-image";
+            img.alt = page['headline'];
+
+            contentDiv.appendChild(headlineDiv);
+            contentDiv.appendChild(img);
+            link.appendChild(contentDiv);
+            listItem.appendChild(link);
+            listId.appendChild(listItem);
+        }
     }
-}
 </script>
 
-<script src="https://annenberg-trending-data.s3.us-east-1.amazonaws.com/data.js"></script>
+<script src="https://amc-trending-data-prod.s3.us-east-1.amazonaws.com/data.js"></script>
