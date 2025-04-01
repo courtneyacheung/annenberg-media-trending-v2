@@ -5,7 +5,7 @@ Viewership data is updated every two hours.
 
 ## Structure ##
 Backend
-* source/main.py: finds the top articles' url, image url, headline, subheadline, date, and bylines
+* source/main.py: finds the top articles' url, image url, headline, subheadline, date, and bylines using Google Analytics API and Arc Content API 
 * template.yaml: creates an AWS lambda function, event rule, and s3 bucket
 
 Frontend
