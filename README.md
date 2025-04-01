@@ -1,19 +1,15 @@
 ## Description ##
-This project finds uscannenbergmedia.com's trending articles based on viewership. <br/>
+The "Trending this week" feature shows trending articles based on viewership. <br/>
 Data is from the past 7 days, with viewership of recent articles weighted higher than older articles. <br/>
 Viewership data is updated every two hours.
 
 ## Structure ##
-main.py finds the top articles <br/>
-template.yaml creates the following AWS resources: lambda function, s3 bucket, and event rule <br/>
-arc_display.html contains code for the Arc html box
+Backend
+* source/main.py: finds the top articles' url, image url, headline, subheadline, date, and bylines <br/>
+* template.yaml: creates an AWS lambda function, event rule, and s3 bucket <br/>
+Frontend
+* arc_display.html: displays the top 5 articles (paste this code into the Arc html box)
 
 ## Requirements ##
-AWS CLI <br/>
-AWS SAM CLI <br/>
-Google Analytics API credentials file (not included in public repo)<br/>
-
-## Run ##
-Option 1: deploy template.yaml on PyCharm <br/>
-Option 2: run
-/usr/local/bin/sam sync --stack-name annenberg-trending-lambda --template-file <path to template.yaml> --s3-bucket annenberg-trending-lambda --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND --no-dependency-layer --no-watch
+To run source/main.py, install requirements.txt and Pandas. Obtain Google Analytics API credentials file, and place it under source.
+To deploy template.yaml, install AWS CLI and AWS SAM CLI. Deploy through Pycharm using "sync serverless application".
