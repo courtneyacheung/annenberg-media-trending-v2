@@ -1,3 +1,5 @@
+Created by: Courtney Cheung and Ayush Roy
+
 ## Description ##
 The "Trending this week" feature shows trending articles based on viewership. <br/>
 Data is from the past 7 days, with viewership of recent articles weighted higher than older articles. <br/>
