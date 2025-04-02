@@ -16,3 +16,7 @@ Frontend
 ## Requirements ##
 To run source/main.py, install requirements.txt and Pandas. Obtain Google Analytics API credentials file, and place it under source. <br/>
 To deploy template.yaml, install AWS CLI and AWS SAM CLI. Deploy through PyCharm using "sync serverless application".
+
+![trending_screenshot.png](trending_screenshot.png)
+
+
