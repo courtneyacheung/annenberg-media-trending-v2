@@ -9,6 +9,7 @@ Viewership data is updated every two hours.
 Backend
 * source/main.py: finds the top articles' url, image url, headline, subheadline, date, and bylines using Google Analytics API and Arc Content API 
 * template.yaml: creates an AWS lambda function, event rule, and s3 bucket
+* Google Analytics credentials file located in AWS lambda function (not in public repo)
 
 Frontend
 * arc_display.html: displays the top 5 articles (paste this code into the Arc html box)
